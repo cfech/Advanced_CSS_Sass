@@ -1,0 +1,146 @@
+.popup {
+  height: 100vh;
+  width: 100%;
+  background-color: rgba($color-black, 0.8);
+  z-index: 10000;
+
+  //must have height width adn positioning defined for fixed to work
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  //hiding the popup to start off
+  opacity: 0;
+  visibility: hidden;
+
+  transition: all 0.5s;
+
+  //takes effect when the url has the target (id of the current element) in it
+  &:target {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  //when the popup becomes the target style the child element, the content to create the zooming in from the back of the page effect
+  &:target &__content{
+
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  &__content {
+    @include deadCenter;
+    width: 75%;
+    background-color: white;
+    box-shadow: 0 2rem 4rem rgba($color-black, 0.2);
+    z-index: 10500;
+    border-radius: 3px;
+    //content, time, delay
+    transition: all .4s .2s;
+
+    //to get two divs side by side with the same height, 1//set parent display to table
+    display: table;
+    //to hide image overflow
+    overflow: hidden;
+
+    //for intial state , in order to animate it 
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.25);
+  }
+
+  &__left {
+    width: 33.33333%;
+
+    //2set children to table-cell with width adding up to 100%
+    display: table-cell;
+  }
+
+  &__right {
+    width: 66.66667%;
+    //2set children to table-cell with width adding up to 100%
+    display: table-cell;
+    //3 align the content in the middle
+    vertical-align: middle;
+    padding: 1rem 5rem;
+  }
+
+  
+
+  &__img {
+    display: block;
+    width: 100%;
+  }
+
+  &__text {
+    font-size: 1.2rem;
+    margin-bottom: 4rem;
+
+    //automatically creates two text columns
+    -moz-column-count: 2;
+    -ms-column-count: 2;
+    -webkit-column-count: 2;
+    column-count: 2;
+
+    -moz-column-gap: 4rem;
+    -ms-column-gap: 4rem;
+    -webkit-column-gap: 4rem;
+    column-gap: 4rem;
+
+    //puts a line in the middle of the texts
+    -moz-column-rule: 1px solid $color-grey-light-2;
+    -ms-column-rule: 1px solid $color-grey-light-2;
+    -webkit-column-rule: 1px solid $color-grey-light-2;
+    column-rule: 1px solid $color-grey-light-2;
+
+    //will insert hyphens appropriately at line break, html language code must be set to work
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  &__btn {
+    &:link,
+    &:visited {
+      color: $color-primary;
+      display: inline-block;
+      text-decoration: none;
+      border-bottom: 1px solid $color-primary;
+      padding: 2px;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+
+    &:hover {
+      background-color: black;
+      color: $color-primary;
+      //x, y, blur, color
+      box-shadow: 0 1rem 2rem rgba($color-primary, 0.7);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      box-shadow: 0 0.5rem 1rem rgba($color-primary, 0.7);
+      transform: translateY(0px);
+    }
+  }
+
+  &__close {
+    &:link,
+    &:visited {
+      color: $color-grey-dark;
+      position: absolute;
+      top: 1rem;
+      right: 2.5rem;
+      font-size: 4rem;
+      text-decoration: none;
+      display: inline-block;
+      line-height: 1;
+    }
+
+    &:hover,
+    &:active {
+      color: $color-primary;
+    }
+  }
+}

@@ -1,0 +1,70 @@
+.header {
+  height: 95vh;
+  //in sass you can stick a hexadecimal color right into the rgba function
+  background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.803), rgba(40, 180, 133, 0.81)),
+    url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo {
+    height: 3.5rem;
+  }
+
+  &__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  &__banner {
+    background-color: rgba(white, 0.8);
+    width: 100%;
+    height: 3rem;
+    position: absolute;
+    top: 10rem;
+    left: 0;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 2rem;
+    padding-bottom: 30px;
+    z-index: 50;
+
+    &--link {
+      &:link,
+      &:visited {
+        color: $color-primary;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary;
+        padding: 2px;
+        font-size: 1.4rem;
+        transition: all 0.2s;
+      }
+
+      &:hover {
+        background-color: black;
+        color: $color-primary;
+        //x, y, blur, color
+        box-shadow: 0 1rem 2rem rgba($color-primary, 0.7);
+        transform: translateY(-2px);
+      }
+
+      &:active {
+        box-shadow: 0 0.5rem 1rem rgba($color-primary, 0.7);
+        transform: translateY(0px);
+      }
+    }
+  }
+}

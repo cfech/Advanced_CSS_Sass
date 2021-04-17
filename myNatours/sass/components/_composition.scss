@@ -1,0 +1,47 @@
+.composition{
+    position: relative;
+    &__photo{
+        width: 55%;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, 40%);
+        border-radius: 2px;
+        position: absolute;
+        z-index: 5;
+        transition: all .6s;
+
+      
+
+        &--p1{
+            left: -2rem;
+            top: 0;
+            
+        }
+
+        &--p2{
+            right: 0;
+            top: 2rem;
+            
+        }
+
+        &--p3{
+            left: 20%;
+            top: 10rem;
+            
+        }
+
+        &:hover{
+            transform: scale(1.05) translateY(.5rem);
+            //rotate(360deg)
+            box-shadow: 0 2.5rem 4rem rgba($color-black, 40%);
+            z-index: 20;
+
+            //using outline we can use outline offset that is not available on the border property
+            outline: 1.5rem solid $color-primary;
+            outline-offset: 2rem;    
+        }
+    }
+
+    //select the photos which are not hovered inside the composition element
+    &:hover &__photo:not(:hover){
+        transform: scale(.95);
+    }
+}

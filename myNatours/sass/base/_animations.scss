@@ -1,0 +1,91 @@
+@keyframes moveInLeft {
+    /* what is happening at the start  */
+    0% {
+      opacity: 0;
+      transform: translateX(-1rem);
+    }
+    /* could also have 30, 54, 76, any intermediate step we want */
+    80% {
+      opacity: 0.9;
+      transform: translateX(1rem);
+    }
+    /* what is happening at the finish  */
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes moveInRight {
+    /* what is happening at the start  */
+    0% {
+      opacity: 0;
+      transform: translateX(10rem);
+    }
+    /* could also have 30, 54, 76, any intermediate step we want */
+    80% {
+      opacity: 0.9;
+      transform: translateX(-1rem);
+    }
+    /* what is happening at the finish  */
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes moveInButton {
+    /* what is happening at the start  */
+    0% {
+      opacity: 0;
+      transform: translateY(3rem);
+    }
+  
+    /* what is happening at the finish  */
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes highlightCopyright{
+    0%{
+      outline: 1.5rem solid transparent;
+      outline-offset: 2rem;    
+    }
+
+    20%{
+      outline: 1.5rem solid $color-primary;
+      outline-offset: 2rem;    
+    }
+
+    35%{
+      outline: 1.5rem solid transparent;
+      outline-offset: 2rem;    
+    }
+
+    50%{
+      outline: 1.5rem solid $color-primary;
+      outline-offset: 2rem;    
+    }
+
+    65%{
+      outline: 1.5rem solid transparent;
+      outline-offset: 2rem;    
+    }
+
+    80%{
+      outline: 1.5rem solid $color-primary;
+      outline-offset: 2rem;    
+    }
+
+
+    95%{
+      outline: 1.5rem solid transparent;
+      outline-offset: 2rem;    
+    }
+    100%{
+      outline: 1.5rem solid transparent;
+      outline-offset: 2rem; 
+      
+    }
+  }

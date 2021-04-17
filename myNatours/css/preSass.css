@@ -1,0 +1,287 @@
+/* css pre sass, good lesson in here on placement, animation, before/after etc... */
+
+/* https://www.youtube.com/watch?v=YszONjKpgg4  -ainimation video*/
+
+/* http://codingheroes.io/resources/  -jonas website */
+
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+
+/* rems only supported after ie 9  */
+
+/* resetting css */
+
+/* universal selector selects every element on the page and applies this to them, margin and padding 0 gets rid of native margin and padding on h1 li etc */
+
+/* we must select the after and before elements as well because they will not inherit the * only becuase they are not elements  */
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    /* will inherit from body */
+    box-sizing: inherit;
+}
+
+/* resetting css */
+
+/* setting root font size, this allows us to make our websites text padding margin etc, anything we would use pixels for that responds to front size, responsive without writing media queries by making the reset of the font size declarations in rem */
+
+/* html{
+    font-size: 10px; /* <- rem reference  
+} */
+
+/* here we are referencing the default browser fontsize, and not putting it in pixels so the user can change the defualt in the browser if they wish to, the deafult font size is 16 so 10/16 is .625 , we want 10px font size to interact with our rem measurments */
+
+html {
+    font-size: 62.5%;
+}
+
+/* using inheritance to set a font on all child elements */
+
+/* font types go in bdy selector not universal selector - bp */
+
+/* padding adds a border to whole web page */
+
+body {
+    font-family: "Lato";
+    font-weight: 400;
+    /* font-size: 16px; */
+    line-height: 1.7;
+    color: #777;
+    /* references the root font size, declared in the html tag */
+    padding: 3rem;
+    /* everything on the page will inherit this if we dnt change it */
+    box-sizing: border-box;
+}
+
+/* makes the height of the element always be 95% of the view */
+
+/* background size cover covers the area of the view port */
+
+/* linear gradient takes a direction beginning and end color, to top, bottom left  */
+
+/* background position top always crops off the bottom of the image on viewport change, pinning the top , bottom would do the opposite, center crops evenly */
+
+/* clip path allows us to clip off part of an image based on coordinates given to the functions it takes, for polygon get your coordinates x,y and it will show whats in the shape, can be % px etc*/
+
+/* https://bennettfeely.com/clippy/ */
+
+.header {
+    height: 95vh;
+    background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.803), rgba(40, 180, 133, 0.81)), url(../img//hero.jpg);
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    /* top left, top right , bottom right, bottom left */
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+
+/* position absolute allows us access to top bottom left right, reference has to be to a parent element with a position relative  */
+
+.header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+}
+
+.header__logo {
+    height: 3.5rem;
+}
+
+/* just an example, could be hover active etc */
+
+/* .logo:active{
+    animation: moveInRight 1.5s ease-out;  
+    animation-delay: .1s;
+} */
+
+/* header is parent element , top and left are relative to the parent element*/
+
+.header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    /* 50% in translate is relative to the height and width of the current element now, not the parent , so it is shifted the the left 50% of the current element width and the top 50% of the current element height, this combined with position absolute, top and left puts the box in the direct center of the screen */
+    transform: translate(-50%, -50%);
+    /* centering the button cause it is inline block element which is treated like text */
+    text-align: center;
+}
+
+/* backface-visibility fixes the possible shaking problem, doesn't allow us to see the back of the element if set to hidden */
+
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase;
+    backface-visibility: hidden;
+    margin-bottom: 6rem;
+}
+
+/* to display one span on top of another we need to display it as a block level element, block level elements take up the whole line and have space after them, spans are naturally inline elements */
+
+/* to apply animation we must specify the name and duration, there are also other properties we can use such as delay, count etc, eas out means it plays faster at the beginning and slower at the end */
+
+.heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 700;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+    /* animation-iteration-count: infinite; */
+    /* animation-delay: 2s; */
+    /* animation: moveInLeft 1.5s easeout infinite 2s; */
+}
+
+/* can pass multiple params to animation property */
+
+.heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 1.75rem;
+    animation: moveInRight 1.5s ease-out;
+}
+
+/* moveInLeft is the name of the animation, browsers are optimized for opacity and transform properties */
+
+@keyframes moveInLeft {
+    /* what is happening at the start  */
+    0% {
+        opacity: 0;
+        transform: translateX(-1rem);
+    }
+    /* could also have 30, 54, 76, any intermediate step we want */
+    80% {
+        opacity: .9;
+        transform: translateX(1rem);
+    }
+    /* what is happening at the finish  */
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* example of rotation  */
+
+/* transform: translateX(100px) roatate(180deg); */
+
+@keyframes moveInRight {
+    /* what is happening at the start  */
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+    /* could also have 30, 54, 76, any intermediate step we want */
+    80% {
+        opacity: .9;
+        transform: translateX(-1rem);
+    }
+    /* what is happening at the finish  */
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInButton {
+    /* what is happening at the start  */
+    0% {
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+    /* what is happening at the finish  */
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* link is a pseudo class, a special state of an element, we use the pseudoclass to style elements under certain conditions , also visited, hover, active etc  */
+
+/* display as inline block so it has its own line and own space, now the box model now works on the element */
+
+/* inline element is treated as text so all we have to do to center text is text align center on parent element  */
+
+/* transition all etc... goes on the element not the hover or else it will just snap back  */
+
+.btn:visited, .btn:link {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 10rem;
+    /* shorthand for transition if we don't want to break it down step by step in keyframe */
+    transition: all .2s;
+    /* used for the positioning of the after button; */
+    position: relative;
+    font-size: 1.6rem;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    /* offeset in x , y , blur , color  rgba with 20% opacity */
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+}
+
+.btn--white {
+    background-color: #fff;
+    color: #777;
+}
+
+/* after ads a virtual element after the element we ae working with, after pseudo element is treated like  child of he btn element must specify content and display, height and with take up 100% of the button  */
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    /* we use absolute positioning to position this element and z index to put it behind the btn element */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* adding transition property */
+    transition: all .4s;
+    opacity: 1;
+}
+
+.btn--white::after {
+    background-color: white;
+}
+
+/* here we have an after element only when we have the hover state */
+
+/* scale increases the size of the element */
+
+.btn:hover::after {
+    /* example of scale  */
+    /* transform: scale(1.5); */
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+/* name duration timing function delay */
+
+.btn--animated {
+    animation: moveInButton 1s ease-out .75s;
+    /* this will now apply the styles of the keyframe at0% before the animation starts ie: 0% {
+        opacity: 0;
+        transform: translateY(30px);
+
+        forwards setting applies the features that are at 100%
+    }*/
+    animation-fill-mode: backwards;
+}
