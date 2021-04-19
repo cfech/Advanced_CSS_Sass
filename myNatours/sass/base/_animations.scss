@@ -89,3 +89,46 @@
       
     }
   }
+
+  @keyframes highlightCopyright__Small{
+    0%{
+      border-bottom: .25rem solid transparent;
+       
+    }
+
+    10%{
+      border-bottom: .25rem solid $color-primary;
+       
+    }
+
+    35%{
+      border-bottom: .25rem solid transparent;
+       
+    }
+
+    50%{
+      border-bottom: .25rem solid $color-primary;
+       
+    }
+
+    65%{
+      border-bottom: .25rem solid transparent;
+       
+    }
+
+    80%{
+      border-bottom: .25rem solid $color-primary;
+       
+    }
+
+
+    95%{
+      border-bottom: .25rem solid transparent;
+
+    }
+    100%{
+      border-bottom: .25rem solid transparent;
+      
+      
+    }
+  }

@@ -9,13 +9,47 @@
 }
 
 html {
-  //defines what 1 rem is
-  font-size: 62.5%;
+  //defines what 1 rem is, all rems scale up or down by changing default font sze, standard is 16px, we use 10 px (10/16 = 62.5%) for easy conversions to rems
+  font-size: 62.5%;           //10px
   //for scrolling to anchor tags
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+
+
+   
+
+  @include respond(tab-land){            
+    //this code gets passed into the mixin
+    font-size: 56.25%;           //9px     
+
+  };
+
+  @include respond(tab-port){            //will apply for anything 900px or less
+    //this code gets passed into the mixin
+    font-size: 50%;                //8px
+
+  };
+
+  // @include respond(phone){          
+  //   //this code gets passed into the mixin
+  //   font-size: 40%;                //6px
+
+  // };
+
+  @include respond(big-desktop){
+    //this code gets passed into the mixin
+    font-size: 75%;             //12px
+  };
 }
 
 
 body{
   box-sizing: border-box;
+  padding: 3rem;
+
+  @include respond(tab-port){            //will apply for anything 900px or less
+  
+    padding: 0;                
+
+  };
+
 }
