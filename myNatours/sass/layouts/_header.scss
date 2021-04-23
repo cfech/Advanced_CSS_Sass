@@ -1,15 +1,31 @@
 .header {
-  height: 95vh;
+  height: 85vh;
   //in sass you can stick a hexadecimal color right into the rgba function
   background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.803), rgba(40, 180, 133, 0.81)),
-    url(../img/hero.jpg);
+    //url is relative to where the final compiled css is looking
+      url(../img/hero-small.jpg);
   background-size: cover;
   background-position: top;
   position: relative;
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 
-  @include respond(phone){
+  //using supports to test for clip path
+  @supports (clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%)) or
+    (-webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%)) {
+      height: 95vh;
+  }
+
+  //an write media queries to target resolution, 192 dots per inch is a hgh res mac book screen and common break point, can combine media queries with and, can also chain them with , just like css
+  //webkit version is for safari pixels 2x
+  @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+         only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+         only screen and (min-width: 125em) {
+    background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.803), rgba(40, 180, 133, 0.81)),
+      url(../img/hero.jpg);
+  }
+
+  @include respond(phone) {
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
     clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
   }
@@ -46,7 +62,7 @@
     padding-bottom: 30px;
     z-index: 50;
 
-    @media(max-width: 370px){
+    @media only screen and (max-width: 370px) {
       font-size: 1.2rem;
       // padding-bottom: 45px;
     }

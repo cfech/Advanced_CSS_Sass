@@ -53,3 +53,9 @@ body{
   };
 
 }
+
+//effects when you highlight text in the page
+::selection{
+    background-color: $color-primary;
+    color: $color-white;
+}

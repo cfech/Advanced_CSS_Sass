@@ -23,7 +23,8 @@
     left: 0;
     width: 100%;
 
-    //hiding the back of the car when we rotate it
+    //hiding the back of the card when we rotate it
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 
     &--front {
@@ -187,7 +188,10 @@
 
 
 
-  @include respond(tab-port){
+  @media screen and (max-width: 56.25em),
+  //says we do this on a screen with hover none ie: touch screens
+    only screen and (hover: none)
+  {
   height: auto;
   border-radius: 5px;
   background-color: $color-white;

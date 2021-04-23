@@ -3,13 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
+    <!-- tells our website to render the content with the width of the device, this is boilerplate -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 
-
-    <link rel="stylesheet" href="css/icon-font.css">
+        <!-- included in the compiled css now only comment on when going to deploy  -->
+    <!-- <link rel="stylesheet" href="css/icon-font.css"> -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
 
@@ -25,16 +26,17 @@
         <label for="navi-toggle" class="navigation__button">
             <span class="navigation__icon">&nbsp;</span>
         </label>
-        
+
         <div class="navigation__background">&nbsp;</div>
 
         <nav class="navigation__nav">
             <ul class="navigation__list">
-                <li class="navigation__item"><a href="#" class="navigation__link"><span>01</span> About Natours</a></li>
-                <li class="navigation__item"><a href="#" class="navigation__link"><span>02</span> Your Benefits</a></li>
-                <li class="navigation__item"><a href="#" class="navigation__link"><span>03</span> Popular Tours</a></li>
-                <li class="navigation__item"><a href="#" class="navigation__link"><span>04</span> Stories</a></li>
-                <li class="navigation__item"><a href="#" class="navigation__link"><span>05</span> Book Now</a></li>
+                <li class="navigation__item"><a href="#" class="navigation__link"><span>01</span> Home</a></li>
+                <li class="navigation__item"><a href="#section-about" class="navigation__link"><span>02</span> About Natours</a></li>
+                <li class="navigation__item"><a href="#your-benefits" class="navigation__link"><span>03</span> Your Benefits</a></li>
+                <li class="navigation__item"><a href="#section-tours" class="navigation__link"><span>04</span> Popular Tours</a></li>
+                <li class="navigation__item"><a href="#section-stories" class="navigation__link"><span>05</span> Stories</a></li>
+                <li class="navigation__item"><a href="#section-book" class="navigation__link"><span>06</span> Book Now</a></li>
             </ul>
         </nav>
     </div>
@@ -43,7 +45,8 @@
     <header class="header">
         <div class="header__logo-box"><img src="./img/logo-white.png" alt="Logo" class="header__logo"></div>
 
-        <div class="header__banner">This website was developed by Jonas Schmedtmann for his online course on advanced css and sass. <a href="#copyright" class="header__banner--link">Click Here</a> to learn more</div>
+        <div class="header__banner">This website was developed by Jonas Schmedtmann for his online course on advanced
+            css and sass. <a href="#copyright" class="header__banner--link">Click Here</a> to learn more</div>
         <div class="header__text-box">
             <h1 class="heading-primary">
                 <span class="heading-primary--main">OUTDOORS</span>
@@ -55,7 +58,7 @@
     </header>
 
     <main>
-        <section class="section-about">
+        <section class="section-about" id="section-about">
             <div class="u-center-text u-margin-bottom-big">
                 <h2 class="heading-secondary">
                     Exciting tours for adventurous people
@@ -84,11 +87,34 @@
                 </div>
                 <div class="col-1-of-2">
                     <div class="composition">
-                        <img src="img/nat-1-large.jpg" alt="Photo 1" class="composition__photo composition__photo--p1">
+                        <!-- Resolution switching by declaring width both the picture with and the browser width and how much vw you want the image to be, put your breakpoints, vw and then a default size, add src just incase browser doesnt support srcset  -->
+                        <img srcset="img/nat-1.jpg 300w, img/nat-1-large.jpg 1000w"
+                        sizes= "(max-width: 56.5em) 20vw, (max-width: 37.5em) 30vw, 300px"
+                        alt="Photo-1" 
+                        class="composition__photo composition__photo--p1"
+                        src="img/nat-1-large.jpg"
+                        >
+
+                        <img srcset="img/nat-2.jpg 300w, img/nat-2-large.jpg 1000w"
+                        sizes= "(max-width: 56.5em) 20vw, (max-width: 37.5em) 30vw, 300px"
+                        alt="Photo-2" 
+                        class="composition__photo composition__photo--p2"
+                        src="img/nat-2-large.jpg"
+                        >
+
+                        <img srcset="img/nat-3.jpg 300w, img/nat-3-large.jpg 1000w"
+                        sizes= "(max-width: 56.5em) 20vw, (max-width: 37.5em) 30vw, 300px"
+                        alt="Photo-3" 
+                        class="composition__photo composition__photo--p3"
+                        src="img/nat-3-large.jpg"
+                        >
+
+
+                        <!-- <img src="img/nat-1-large.jpg" alt="Photo 1" class="composition__photo composition__photo--p1"> 
 
                         <img src="img/nat-2-large.jpg" alt="Photo 2" class="composition__photo composition__photo--p2">
 
-                        <img src="img/nat-3-large.jpg" alt="Photo 3" class="composition__photo composition__photo--p3">
+                        <img src="img/nat-3-large.jpg" alt="Photo 3" class="composition__photo composition__photo--p3">-->
 
                     </div>
                 </div>
@@ -96,7 +122,7 @@
         </section>
 
 
-        <section class="section-features">
+        <section class="section-features" id="your-benefits">
 
             <div class="row">
                 <div class="col-1-of-4">
@@ -273,7 +299,7 @@
             </div>
         </section>
 
-        <section class="section-stories">
+        <section class="section-stories" id="section-stories">
 
             <!-- //embedding a video in the html, need both formats to make sure they work on all modern browsers, can find more at https://coverr.co/ -->
             <div class="bg-video">
@@ -330,7 +356,7 @@
 
         </section>
 
-        <section class="section-book">
+        <section class="section-book" id="section-book">
             <div class="row">
 
                 <div class="book">
@@ -390,7 +416,17 @@
 
     <footer class="footer" id="footer">
         <div class="footer__logo-box">
-            <img src="./img/logo-green-2x.png" alt="Full Logo" class="footer__logo">
+
+            <!-- (art direction )here we are giving the browser a different image to display on diffrent size devices, using the source and then giving the img as a fallback if the device is too big for the source as described in the media attribute which works just like a media query  -->
+            <picture class="footer__logo">
+                <source srcset="./img/logo-green-small-1x.png 1x, ./img/logo-green-small-2x.png 2x" media="(max-width: 37.5rem)">
+                <!-- (density switching )here we use sourceset to declare two imags for diffrernt densitiesm using the density descriptor (1x,2x) srcset allows the broswer to pikc which image is best for the screen -->
+                
+                <img srcset="./img/logo-green-1x.png 1x, ./img/logo-green-2x.png 2x" alt="Full Logo" src="./img/logo-green-2x.png">
+            </picture>
+
+
+
         </div>
 
         <div class="row">
@@ -408,13 +444,16 @@
             <div class="col-1-of-2">
                 <p class="footer__copyright" id="copyright">
                     Built by Jonas Schmedtmann for his online course on advanced css and sass. Copied and Modified by <a
-                        href="https://myportfolio-136ee.web.app/" class="footer__link" target="blank" rel="noopener noreferrer">Connor Fech</a>
+                        href="https://myportfolio-136ee.web.app/" class="footer__link" target="blank"
+                        rel="noopener noreferrer">Connor Fech</a>
                     Check the course out at -> <a href="https://www.udemy.com/course/advanced-css-and-sass/"
-                        class="footer__link" target=blank rel="noopener noreferrer">Advanced CSS & Sass</a>. Copyright by Jonas Schmedtmann. "You
+                        class="footer__link" target=blank rel="noopener noreferrer">Advanced CSS & Sass</a>. Copyright
+                    by Jonas Schmedtmann. "You
                     are 100% allowed to use this webpage for both personal and comercial use, but not to claim it as
                     your own design. A credit to the origional author, Jonas Schmedtmann is highly appreciated." Check
-                    out his website here -> <a href="https://codingheroes.io/" class="footer__link"
-                        target="blank" rel="noopener noreferrer">https://codingheroes.io/</a> Jonas is an amazing designer and great teacher!
+                    out his website here -> <a href="https://codingheroes.io/" class="footer__link" target="blank"
+                        rel="noopener noreferrer">https://codingheroes.io/</a> Jonas is an amazing designer and great
+                    teacher!
                 </p>
             </div>
         </div>
@@ -430,11 +469,19 @@
             <div class="popup__right">
                 <a href="#section-tours" class="popup__close">&times;</a>
                 <h2 class="heading-secondary u-margin-bottom-small">Start Booking Now</h2>
-                <h3 class="heading-tertiary u-margin-bottom-small">Important &ndash; Please read these terms before Booking</h3>
-                <p class="popup__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. &nbsp; <a href="https://www.lipsum.com/" target="_blank" rel="noopener noreferrer" class="popup__btn">Learn More &rarr;</a>
+                <h3 class="heading-tertiary u-margin-bottom-small">Important &ndash; Please read these terms before
+                    Booking</h3>
+                <p class="popup__text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                    Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took
+                    a galley of type and scrambled it to make a type specimen book. It has survived not only five
+                    centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was
+                    popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
+                    more recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+                    Ipsum. &nbsp; <a href="https://www.lipsum.com/" target="_blank" rel="noopener noreferrer"
+                        class="popup__btn">Learn More &rarr;</a>
                 </p>
 
-                <a href="#" class="btn btn--green">Book Now!</a>
+                <a href="#section-book" class="btn btn--green">Book Now!</a>
             </div>
         </div>
     </div>
@@ -511,7 +558,7 @@
         </div>
     </section> -->
 
-
+<script src="test.js"></script>
 </body>
 
 </html>
