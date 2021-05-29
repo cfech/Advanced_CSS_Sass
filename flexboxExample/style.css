@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 1 must set display to flex, default flex direction  is a row  , row-reverse will 
+invert      also column and column-reverse, small screen just set flex direction to column */
+
+/* justify content dictates how items are displayed on main axis, align items on the 
+cross axis, when flex*/ 
+/* direction is row or reverse row then the main axis is X and cross is Y, when the flex 
+direction is column or reverse column then the main axis is Y and cross is X  */
+
+/* justify content, changes the layout of items in the container, center , space-between 
+, flex end, flex start etc  */
+
+/* align items defualt is stretch, that means it will stretch all other elements to 
+match the height of the biggest one, other options, center flex start and end , baseline 
+will align the texts on the same line  */
+
+/* flex shorthand, flex property(grow, shrink, basis) */
+
+.container{
+    background-color: #ccc;
+    padding: 10px;
+
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* flex grow is the ability of the item to grow with appropriate space, matters in 
+relation to other number in the individual elements, while all the items have 1, i2 has 
+2 so it has twice the ability to grow as the other items, 3 with be 3x 4 4x etc..    */
+.item{
+    background-color: #f1425d;
+    padding: 40px;
+    margin: 30px;
+    color: #fff;
+    font-size: 30px;
+    /* flex-grow: 1; */
+}
+
+
+
+
+/* flex basis allows the element to grow to 20% of the screen or 300px  */
+/* but will decrease when there is no more available space
+wo we use flex shrink, which controls how an element can shrink, initial value is 1
+which means it can shrink, if we set to 0 then the element cannot shrink */
+.i2{
+    height: 200px;
+    flex-basis: 300px;
+    flex-shrink: 0;
+}
+
+/* if we just set flex 1 on one item it will just take up all additional space while 
+other items stay the same making on item bigger than the others */
+.i3{
+    order: 5;
+    flex: 1;
+}
+
+/* align self will override align content for individual item, flex-end, f-start, stretch */
+/* order will change the order in a similar fashion to z index, we can align the elements anyway way we want to */
+
+.i4{
+    align-self: flex-end;
+   order: -2;
+}
+
+/* -----------------------------ADDING MORE ITEMS ---------------
+comment in 2-10 in htm */
+
+/* flex wrap will make new lines as viewport shrinks */
+/* align content will align entire rows along the cross axis , end, start, stretch will stretch the row height  */
+
+.container{
+    flex-wrap: wrap;
+    height: 1500px;
+    align-content: stretch;
+}
+ 
