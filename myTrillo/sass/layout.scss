@@ -10,7 +10,7 @@
 .header {
     height: 7rem;
     background-color: #fff;
-    border-bottom: var(--color-grey-light-1);
+    border-bottom: 1px solid var(--color-grey-light-1);
     font-size: 1.4rem;
 
     //display in a row, with space between an center on y axis 
@@ -19,7 +19,7 @@
     align-items: center;
 }
 
-//our flex conatainer
+//our flex container
 .content {
     display: flex;
     
@@ -35,11 +35,17 @@
     // flex-basis: 18%;
     //will allow  the sidebar to take up 18% of the flex container
     flex: 0 0 18%;
+
+    //laying out the sidebar items
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 //flex item
 .hotel-view {
     //wil tell the item to grow as much as it can 
     flex: 1;
-    background-color: orangered;
+    background-color: white;
+    min-height: 80rem;
 }
