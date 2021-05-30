@@ -1,0 +1,138 @@
+////////////////////////////////////
+//LOGO
+.logo {
+  height: 3.5rem;
+  margin-left: 2rem;
+}
+
+////////////////////////////////////
+//SEARCH
+
+.search {
+  //have this take up 40% of parent, dont grow or shrink
+  flex: 0 0 40%;
+
+  //can have nested flex box, where a flex item is also a flex container
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__input {
+    //inputs dont naturally inherit font family or size
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: var(--color-grey-light-2);
+    border: none;
+    padding: 0.7rem 2rem;
+    border-radius: 10rem;
+    width: 90%;
+    transition: all 0.2s;
+
+    //set this so the button so the button sits on top of the input element and moves with it when input is in focus
+    margin-right: -3.25rem;
+
+    &:focus {
+      outline: none;
+      width: 100%;
+      background-color: var(--color-grey-light-3);
+    }
+  }
+
+  &::-webkit-input-placeholder {
+    color: var(--color-grey-light-4);
+    font-weight: 100;
+  }
+
+  //using the adjacent selector to select the sibling of the input, the button
+  &__input:focus + &__button {
+    background-color: var(--color-grey-light-3);
+  }
+
+  &__button {
+    border: none;
+    background-color: var(--color-grey-light-2);
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
+  //formatting sg icon
+  &__icon {
+    height: 2rem;
+    width: 2rem;
+    fill: var(--color-grey-dark-3);
+  }
+}
+
+////////////////////////////////////
+//USER NAVIGATION
+.user-nav {
+  //since the user nav is in itself a flex item we can stretch it out to fill its parents entire height
+  align-self: stretch;
+
+  //default puts the children  items in a row
+  display: flex;
+  align-items: center;
+
+  //selects only the direct children of the user nav, so the 2 icon boxes and 1 user container
+  & > * {
+    padding: 0 2rem;
+    cursor: pointer;
+    height: 100%;
+    //aligning the icons in the center vertically
+    display: flex;
+    align-items: center;
+  }
+
+  //stating on hover of each individual direct child element
+  & > *:hover {
+    background-color: var(--color-grey-light-2);
+  }
+
+  &__icon-box {
+    position: relative;
+  }
+
+  //position relative doesnt work on svg?
+  &__icon {
+    height: 2.25rem;
+    width: 2.25rem;
+    //fills the color fof svg
+    fill: var(--color-grey-dark-2);
+  }
+
+  &__notification {
+    font-size: 0.8rem;
+    height: 1.75rem;
+    width: 1.75rem;
+    border-radius: 100rem;
+    background-color: var(--color-primary);
+    color: #fff;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+
+    //will align the text inside the notification, flexbox works with text
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__user {
+  }
+
+  &__user-photo {
+    height: 3.75rem;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+
+  &__user-name {
+  }
+}
