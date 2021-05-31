@@ -1,3 +1,18 @@
+// 1200px, 1200/16 = 75
+$bp-largest: 75em;
+
+// 1100 px , 1100/16 = 68.75
+$bp-large: 68.75em;
+
+// 900px, 900/16 = 56.25
+$bp-medium: 56.25em;
+
+// 600x, 600/16 = 37.5
+$bp-small: 37.5em;
+
+// 500x, 500/16 = 31.25
+$bp-smallest: 31.25em;
+
 ////////////////////////////////////
 //LOGO
 .logo {
@@ -16,6 +31,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
+  //on the smallest screens the search bar will jump to the end of the flex conatiner, and grow to 100% of the vw, must set parent flex-warp property
+  @media only screen and (max-width: $bp-smallest) {
+    order: 1;
+    flex: 0 0 100%;
+    background-color: var(--color-grey-light-2);
+  }
 
   &__input {
     //inputs dont naturally inherit font family or size
@@ -125,6 +147,54 @@
   }
 
   &__user {
+    //for after element
+    position: relative;
+    transition: all 0.2s;
+
+    &--menu {
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+
+      z-index: -1;
+
+      text-align: center;
+      color: transparent;
+      background-color: transparent;
+      transition: all .5s 0.2s ease-out;
+      
+    }
+
+    &:hover &--menu {
+      background-color: white;
+      display: block;
+      bottom: -125%;
+
+      color: black;
+      background-color: white;
+      display: block;
+      z-index: 1;
+    }
+
+    &--menu-list {
+      list-style: none;
+
+      &-item{
+       
+        padding: 1rem 0rem;
+
+        &:hover{
+          background-color: var(--color-grey-light-3);
+        }
+      }
+    }
+
+    &:hover &--menu-list-item {
+      border-bottom: 1px solid var(--color-grey-light-3);
+    }
+
+
   }
 
   &__user-photo {
@@ -145,11 +215,26 @@
   list-style: none;
   margin-top: 3.5rem;
 
+  //once we put the nav on the top, just space the items evenly on the same row
+  @media only screen and (max-width: $bp-medium) {
+    display: flex;
+    // justify-content: space-evenly;
+    margin: 0;
+  }
+
   &__item {
     position: relative;
 
     &:not(:last-child) {
       margin-bottom: 0.5rem;
+      @media only screen and (max-width: $bp-medium) {
+        margin-bottom: 0;
+      }
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      //to take up all available space
+      flex: 1;
     }
   }
 
@@ -201,6 +286,16 @@
 
     position: relative;
     z-index: 10;
+
+    @media only screen and (max-width: $bp-medium) {
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      flex-direction: column;
+      padding: 1.5rem 3rem;
+    }
   }
 
   &__icon {
@@ -209,6 +304,13 @@
     margin-right: 2rem;
     //will set to the color of the current element, well supported, do more research, would work with over on link, just inherits the color of the element or parent element
     fill: currentColor;
+
+    @media only screen and (max-width: $bp-small) {
+      margin-right: 0;
+      margin-bottom: 0.7rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
   }
 }
 
@@ -220,6 +322,10 @@
   color: var(--color-grey-light-4);
   text-align: center;
   padding: 2.5rem;
+
+  @media only screen and (max-width: $bp-medium) {
+    display: none;
+  }
 }
 
 ////////////////////////////////////////////
@@ -255,6 +361,11 @@
     letter-spacing: 1px;
     padding: 1.5rem 3rem;
     color: var(--color-grey-dark-3);
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+      padding: 1.25rem 2rem;
+    }
   }
 
   &__stars {
@@ -295,17 +406,29 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 0 1.5rem;
+    }
   }
 
   &__rating-average {
     font-size: 2.25rem;
     font-weight: 300;
     margin-bottom: -3px;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.8rem;
+    }
   }
 
   &__rating-count {
     font-size: 0.8rem;
     text-transform: uppercase;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 0.5rem;
+    }
   }
 }
 
@@ -327,24 +450,19 @@
   cursor: pointer;
   transition: all 0.2s;
 
-  & span{
+  & span {
     margin-left: 3px;
-    transition: margin-left .2s;
+    transition: margin-left 0.2s;
   }
-
-
 
   //due to current color property on border, the border will change with the text color
   &:hover {
     color: var(--color-grey-dark-1);
-    
 
-    span{
+    span {
       margin-left: 8px;
     }
   }
-
-
 
   &:focus {
     outline: none;
@@ -407,21 +525,27 @@
     width: 1rem;
     margin-right: 0.7rem;
 
-    //adding svgs for older browsers
-    // background-image: url(../img/chevron-thin-right.svg);
-    // background-size: cover;
+    //adding svgs for older browsers, will haeppen if support fails
+    background-image: url(../img/chevron-thin-right.svg);
+    background-size: cover;
 
     //adding svgs for newer browsers using masks
 
     //the mask allows us to add a background color to the svg through css only insertion.
     //it pretty much puts the stencil of the svg over the background color so we can only see through to the background where the svg would be
-    background-color: var(--color-primary);
-    -webkit-mask-image: url(../img/chevron-thin-right.svg);
-    -webkit-mask-size: cover;
 
-    //for future when supported without prefix
-    mask-image: url(../img/chevron-thin-right.svg);
-    mask-size: cover;
+    @supports (-webkit-mask-image: url()) or (mask-image: url()) {
+      background-color: var(--color-primary);
+      -webkit-mask-image: url(../img/chevron-thin-right.svg);
+      -webkit-mask-size: cover;
+
+      //for future when supported without prefix
+      mask-image: url(../img/chevron-thin-right.svg);
+      mask-size: cover;
+
+      //take away the image if masking works
+      background-image: none;
+    }
   }
 }
 
@@ -441,6 +565,8 @@
   }
 
   &__friends {
+    //will keep the elements side by side no matter the screen size
+    display: flex;
   }
 
   &__photo {
@@ -451,7 +577,7 @@
     border: 3px solid #fff;
 
     &:not(:last-child) {
-      margin-right: -1.5rem;
+      margin-right: -2rem;
     }
   }
 }
@@ -469,6 +595,11 @@
   position: relative;
 
   overflow: hidden;
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
 
   &-text {
     margin-bottom: 2rem;
@@ -516,14 +647,105 @@
     content: "\201C";
     position: absolute;
     top: -2.5rem;
-    left: -.8rem;
-
+    left: -0.8rem;
 
     line-height: 1;
     font-size: 20rem;
     color: var(--color-grey-light-2);
 
-    //for positioning behind the text 
+    //for positioning behind the text
     z-index: 1;
+  }
+}
+
+//////////////////////////
+//CTA
+.cta {
+  padding: 3.5rem 0;
+  text-align: center;
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2.5rem 0;
+  }
+
+  &__book-now {
+    font-size: 2rem;
+    font-weight: 300;
+    text-transform: uppercase;
+
+    margin-bottom: 2.5rem;
+  }
+}
+
+//////////////////////////
+//CTA - BTN
+
+.btn {
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10rem;
+  background-image: linear-gradient(to right, var(--color-primary-light), var(--color-primary-dark));
+  color: white;
+
+  position: relative;
+
+  overflow: hidden;
+
+  transition: all 0.2s;
+
+  //could also use select all child element select to avoid repeating code * > {
+  // display: inline-block;
+  // height: 100%;
+  // width: 100%;
+  // padding: 2rem 7.5rem;
+  // transition: all .2s;
+  // }
+
+  //span is an inline element but we want it to be inline block so we can use padding on it
+  &__visible {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    padding: 2rem 7.5rem;
+    transition: all 0.2s;
+  }
+
+  &__invisible {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    padding: 2rem 0;
+
+    position: absolute;
+    //top -100% will move the span up exactly the height of the element
+    left: 0;
+    top: -100%;
+
+    transition: all 0.2s;
+  }
+
+  &:hover {
+    background-image: linear-gradient(to left, var(--color-primary-light), var(--color-primary-dark));
+    transform: scale(1.05);
+  }
+
+  &:hover &__visible {
+    //translate in y direction 100% of its defined height
+    transform: translateY(100%);
+  }
+
+  &:hover &__invisible {
+    top: 0;
+  }
+
+  // &:focus{
+  //   outline: none;
+  //   animation: pulsate 1s infinite;
+  // }
+
+  &:active {
+    transform: translateY(2px);
   }
 }

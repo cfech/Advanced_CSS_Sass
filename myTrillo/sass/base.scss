@@ -35,9 +35,28 @@ Grey dark 3: #999
 
     --shadow-dark: 0 2rem 6rem rgba(0,0,0,.3);
     --shadow-light: 0 2rem 5rem rgba(0, 0, 0, .15);
-}
+
+    //cannot declare css variables and use them in media queries, must use sass variables
+
+} 
+// 1200px, 1200/16 = 75 
+$bp-largest: 75em; 
+
+// 1100 px , 1100/16 = 68.75
+$bp-large: 68.75em; 
+
+// 900px, 900/16 = 56.25
+$bp-medium: 56.25em;
+
+
+// 600x, 600/16 = 37.5
+$bp-small: 37.5em; 
+
+// 500x, 500/16 = 31.25
+$bp-smallest: 31.25em; 
 
 //global reset
+
 * {
     margin: 0;
     padding: 0;
@@ -52,6 +71,11 @@ Grey dark 3: #999
 html {
     box-sizing: border-box;
     font-size: 62.5%;
+
+
+    @media only screen and (max-width: $bp-large){
+        font-size: 50%; // 8px/16px (default for browsers is 16) 
+    }
 }
 
 //---------------

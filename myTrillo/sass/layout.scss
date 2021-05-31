@@ -1,3 +1,21 @@
+// 1200px, 1200/16 = 75 
+$bp-largest: 75em; 
+
+// 1100 px , 1100/16 = 68.75
+$bp-large: 68.75em; 
+
+// 900px, 900/16 = 56.25
+$bp-medium: 56.25em;
+
+
+// 600x, 600/16 = 37.5
+$bp-small: 37.5em; 
+
+// 500x, 500/16 = 31.25
+$bp-smallest: 31.25em; 
+
+
+
 .container {
   max-width: 120rem;
   margin: 8rem auto;
@@ -6,6 +24,13 @@
 
   min-height: 50rem;
 
+  @media only screen and (max-width: $bp-largest) {
+    margin: 0;
+
+    // to account for when changing default font size which effects the rem size
+    max-width: 100%;
+    width: 100%;
+  }
 
 }
 
@@ -20,11 +45,25 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media only screen and (max-width: $bp-smallest){
+    flex-wrap: wrap;
+    height: 12rem;
+
+    //controls the space between the rows 
+    align-content: space-around;
+  }
+
 }
 
 //our flex container
 .content {
   display: flex;
+
+  @media only screen and (max-width: $bp-medium ){
+    flex-direction: column;
+
+  }
 }
 
 //flex item
@@ -59,6 +98,18 @@ font-size: 1.4rem;
   padding: 4.5rem;
   background-color: var(--color-grey-light-1);
   border-bottom: 1px solid var(--color-grey-light-2);
+
+
+  //when doing max-width:  must put the smaller one last because last one will apply is there was conflicts
+
+  @media only screen and (max-width: $bp-medium){
+    padding: 3rem;
+  }
+
+  @media only screen and (max-width: $bp-small){
+    flex-direction: column;
+    
+  }
 }
 
 .description {
@@ -68,6 +119,17 @@ font-size: 1.4rem;
   flex: 0 0 60%;
   margin-right: 4.5rem;
   padding: 3rem;
+
+  @media only screen and (max-width: $bp-medium){
+    padding: 2rem;
+    margin-right: 3rem;
+  }
+
+  @media only screen and (max-width: $bp-small){
+    margin-right: 0;
+    margin-bottom: 3rem;
+    
+  }
 }
 
 .user-reviews {
@@ -96,10 +158,23 @@ font-size: 1.4rem;
     padding-bottom: 30px;
     z-index: 50;
 
-    @media only screen and (max-width: 370px) {
-      font-size: 1.2rem;
-      // padding-bottom: 45px;
+    @media only screen and (max-width: 1200px) {
+      width: 82%;
+      top: 14rem;
+      left: 18%;
     }
+
+    @media only screen and (max-width: 900px) {
+      width: 100%;
+      top: 18rem;
+      left: 0;
+    }
+
+    @media only screen and (max-width: 500px) {
+      width: 100%;
+      top: 22rem;
+      font-size: 1.2rem;
+    } 
 
     &--link {
       &:link,
